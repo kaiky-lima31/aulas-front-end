@@ -1,0 +1,330 @@
+@import url('https://fonts.googleapis.com/css2? family= Noto+Sans:wght@400;700 & family= Raleway:wght@400;700;800 & display=swap');
+
+
+* {
+    box-sizing: border-box;
+}
+/* Declarando o font-size 
+para o elemento raiz (html).
+
+Importante! Esta configuração 
+permitirá o uso da medida REM
+em vários lugartes CSS.
+
+Exemplo: 1rem equivalçe (no momento) a 14px*/
+html {font-size: 14px;}
+
+body {
+    background-color: #fffffa;
+    font-family: 'Noto Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* CSS Reset 
+Técnica de limpeza de formatações pré-existentes
+nos navegadores. Meste exemplo abaixo, estamos resetando 
+apenas alguns elementos do site.*/
+body, h1, h2, p, figure, .menu {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-family: Releway, verdana, sans-serif;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+h1 a  {
+   background-color: black;
+   color: #fffffa;
+   border-radius: 5px;
+   padding: 0.3rem 1rem;
+    
+}
+
+a { text-decoration: none;}
+
+header {
+
+/*VH -> viewport heigth
+(altura da viewport)
+Usando esta medida garantimos 
+que a relaçao de tamanho é a tela 
+(viewport). Neste caso, cerca de 
+12 unidades na altura da tela.*/
+ 
+/* Deixar o cabeçalho
+fixo no corpo da página */
+    
+    position: sticky;
+    top: 0;
+    background-color: #fffffa;
+
+
+}
+/* Ativando flex somente para
+o limitador  */
+header .limitador{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 12vh;
+
+}
+
+nav h2 a {
+    color: black;
+    font-size: 1.2rem;
+    padding: 1rem;
+
+    
+}
+
+nav h2 a:hover, .menu a:hover  {
+    background-color: rgb(175, 141, 141);
+}
+
+.menu {  
+    /* listas de links */
+    list-style: none;
+
+    /* Esta propriedade
+    será usada posteriormente
+    para esconder a lista de links  */
+    display: none;
+
+
+}
+
+.menu a {
+    color: black;
+    font-weight: bold;
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* ATENÇÂO
+ Esta regra somente irá funcionar
+ com o auxilio de programação JS.
+ 
+ Objetivo: quando duas classe estiverem 
+ Combinadas ("menu" e "aberto"), o menu
+ será exibido completamente.*/
+
+ .menu.aberto {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+
+    position: absolute;
+    right: 0;
+    left: 0;
+ }
+ 
+
+ .destaque {
+    background-image: url(../imagens/fundo-destaque.jpg);
+    
+    height: 80vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background-size: cover;
+    background-attachment: fixed;
+ }
+
+ .destaque h2, .destaque p  {
+    color: white;
+    text-align: center;
+ }
+
+ .destaque h2{
+    /* Fonte responsiva usando
+    clamp(
+        tamanho mínimo,
+        tamanho ideal,
+        tamanho máximo.
+    */
+    font-size: clamp(1.5rem, 10vw, 3rem);
+
+
+    /*Etapa 2 (chamar e configurar
+    a execução da animação.)*/
+    animation-name: aparecer;
+    animation-duration: 3s;
+
+    /*animation-iteration-count: infinite;
+    animation-direction: alternate;*/
+    
+ }
+/*clamp: */
+ .destaque p {
+    font-size: 1.5rem;
+
+    animation-name: aparecer;
+    animation-duration: 3s;
+    animation-delay: 2s;
+
+    /*Usamos a propriedade/valor
+    abaixo para forçar a animação
+    a iniciar (após os 2s) já
+    com a opacidade zerada, o 
+    tamanho menor e posição
+    diferente.*/
+    animation-fill-mode:backwards ;
+    
+ }
+
+ /*Etapa 1
+ Criar uma regra de
+ animação.*/
+ 
+ 
+@keyframes aparecer {
+    /*De (como inicia)*/
+    from {
+        
+        transform: translateY(-500px)
+        scale(0.1);
+    }
+    /*Para (como termina)*/
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        
+    }
+
+}
+
+/* Tornando as imagens 
+responsivas/flexíveis */
+img {max-width: 100%;}
+
+article h2 {
+    padding: 1rem;
+    font-size: 2rem;
+    font-family: "raleway", sans-serif;
+    color: #6b6b6b  ;
+
+}
+
+article p,
+article address {
+    padding: 0.5rem 0;
+    font-size: 1.3rem;
+}
+
+article address {
+    font-style: normal;
+ 
+    text-align: center;
+}
+
+.front-end,
+.historia,
+.localizacao {
+    text-align: center ;
+}
+
+
+.historia  {
+    background-image: url(../imagens/fundo-madeira.jpg);
+    align-items: center;
+    background-attachment: fixed;
+    background-size: cover;
+ }
+
+ article.historia h2{
+    color: #fffffa;
+    text-shadow: black 1px 1px 3px;
+ }
+
+.historia iframe {
+    width: 100%;
+    max-width: 700px;
+    margin-bottom: 2rem;
+ }
+
+.localizacao iframe {
+    width: 100%;
+    margin-top: 2rem; 
+  }
+  
+
+.front-end figure {
+    margin: 2rem auto;
+  }
+/* Classe ultilitária */
+
+  .limitador {
+    width: 95vw;
+    margin: auto;
+
+  }
+
+footer {
+    background-color: #0d0000;
+    color: #fffffa;
+    height: 15vh;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+  
+
+  
+
+
+
+
+
+/* Exercicios */
+
+/* 1) Crie uma regra para formatar o artigo
+de História da internet com:
+-Plano de fundo: imagen "fundo-madeira"
+-Deixe a imagen parada e cobrindo todo o 
+espaço. */
+
+/* 2) Crie uma regra para formatar o título 
+História da Internet com a cor branca e uma 
+sombra no texto.  */
+
+/* 3) Crie uma regra para formatar o vídeo 
+do História para Internet com:
+
+-largura de 100%
+-largura máxima de 700px
+-margen inferior de 2rem*/
+
+/* 4) Crie uma regra para formatar o mapa
+da Localização com:
+-largura de 100%
+-margem superior de 2rem */
+
+/* 5) Crie uma regra para formatar somente 
+o figure do front-end com: 
+-margen superior/inferior de 2rem, e 
+esquerda/direita automática
+-conteúdo centralizado */
+
+/* 6) crie uma classe chamada "limitador"
+com largura de 95vw e margem automatica.
+B) Aplique esta classe no cabeçalho, artigo 
+front-end, e informações de localização. */
+
+
+
+
+ 
